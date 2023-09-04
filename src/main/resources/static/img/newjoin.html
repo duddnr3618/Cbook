@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *  {margin: 0; padding: 0; text-decoration: none;}
+        li { list-style-type: none; transform: fixed;}
+        header {width: 1500px; height: 100px; margin: 0 auto; display: flex;}
+        #logo {width: 200px; height: 100px; display: flex; justify-content: center; margin-left: 200px;
+        align-items: center; font-size: x-large; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+        #logo a {text-decoration: none; font-size: xx-large; color: brown; }
+        #logoimg {width: 70px; height: 70px; margin-left: 5px; }
+        #search {width: 500px; height: 50px; margin: 0 auto; display: flex; border: 2px solid pink; 
+        margin-top: 25px; border-radius: 25px; }
+        #search1 {width: 50px; height: 50px; display: flex; justify-content: center;
+        align-items: center; font-size: x-large; color: brown;}
+        #search2 {width: 400px; height: 50px; border-top: 0; border-right: 0; border-bottom: 0; 
+        border-left: 70%; text-align: center; border-color: pink; color: brown; opacity: 0.2;}
+        #topmenu{right: 0; padding-right: 20px;}
+        #topmenu ul{margin-top: 50px;}
+        #topmenu ul li{ display: inline-block; margin-left: 25px;}
+        #topmenu ul li a {color: brown; font-size: small; font-weight: 800;}
+
+        main {border: 1px solid pink; width: 1000px; height: 700px; margin: 0 auto;
+        margin-top: 30px;}
+        #new {width: 700px; height: 70px; margin: 0 auto;display: flex;}
+        #new1 {width: 200px; height: 50px;text-align: center;
+        margin-top: 20px;}
+        #new2 {width: 350px; height: 50px; margin-top: 20px;}
+        #new2 input {width: 300px; height: 30px;}
+        #new3 {width: 100px; height: 30px; margin-top: 20px;}
+        #new3 button {width: 100px; height: 30px; border-radius: 15px;
+        background-color: brown; color: white; }
+        #new4 {width: 400px; height: 30px; margin-top: 15px; }
+        #new6 {width: 400px; height: 50px; margin-top: 20px;}
+        #new8 {width: 100px; margin-top: 20px;}
+        #fin {width: 100px; height: 50px; border-radius: 25px; margin-left: 450px;}
+   
+        footer {width: 1500px; height: 400px; margin: 0 auto; margin-top: 500px;}
+        #f1 {width: 100%; height: 50%; }
+        #f1 ul {width: 100%; height: 100%;}
+        #f1 ul li {float: left; width: 31%; height: 100%;font-size: 30px; 
+        color:black;font-weight: 900; margin-left: 30px; text-align: center;
+        border-right: 1px solid brown; border-left: 1px solid brown;}
+        #f1 ul li div {width: 80%; margin: 0 auto;
+        border-radius: 10px; background-color: rgb(219, 193, 193); color: white;}
+        #f1 ul li pre {font-size: 21px; font-weight: 100; color: black; text-decoration: none; }
+        #f2 {width: 100%; height: 50%; margin-top: 20px; text-align: center;}
+        #f2 ul {width: 100%; height: 50px;}
+        #f2 ul li {float: left; margin-left: 40px;}
+        #f2 ul li a{ font-size: 20px; font-weight: 600; color: black; margin: 0 auto;}
+        #last {margin-top: 15px;}
+       
+   
+   </style>
+</head>
+<body>
+    <header>
+   
+        <div id="logo">
+            <a href="index.html"><img id = "logoimg" src="./images (2).jpg"></a>
+            <a href="index.html">C-Book</a>
+        </div>
+
+        <div id="search">
+            <a href="#"><div id = "search1">C</div></a>
+            <input id = "search2" type="text" placeholder="사람은 책을 만들고 책은 사람을 만든다.">
+        </div>
+
+        <div id="topmenu">
+            <ul>
+                <li><a href="./newjoin.html">회원가입</a></li>
+                <li><a href="./login.html">로그인</a></li>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="#">C-Book소개</a></li>
+            </ul>
+        </div>
+    </header>
+   
+    <main>
+        <hr color="pink">
+        <br><br>
+        <div id = "new">
+            <div id = "new1">이름</div>
+            <div id = "new2"><input type="text"></div>
+        </div>
+
+        <div id = "new">
+            <div id = "new1">성별</div>
+            <div id = "new8"><input type="radio" name="gender">남자</div>
+            <div id = "new8"><input type="radio" name="gender">여자</div>
+        </div>
+
+        <div id = "new">
+            <div id = "new1">아이디</div>
+            <div id = "new2"><input type="text"></div>
+            <div id = "new3"><button>중복확인</button></div>
+        </div>
+        <div id = "new">
+            <div id = "new1">비밀번호</div>
+            <div id = "new2"><input type="text"></div>
+        </div>
+        <div id = "new">
+            <div id = "new1">비밀번호 확인</div>
+            <div id = "new2"><input type="text"></div>
+        </div>
+        <div id = "new">
+            <div id = "new1">주민번호</div>
+            <div id = "new4"><input type="text">-<input type="text"></div>
+        </div>
+        <div id = "new">
+            <div id = "new1">휴대폰 번호</div>
+            <div id = "new2"><input type="text"></div>
+        </div>
+        
+        <div id = "new">
+            <div id = "new1">이메일</div>
+            <div id = "new6"><input type="email">@<input type="email"></div>
+        </div>
+
+        <button id = "fin">가입하기</button>
+
+    </main>
+
+    <footer>
+        <div id = "f1">
+            <ul>
+                <li><div>※공지사항※</div>
+                    <Pre>
+    
+    - 23.06.30 C-Book 공지사항
+    - 23.06.29 C-Book 공지사항
+    - 23.06.28 C-Book 공지사항
+    - 23.06.27 C-Book 공지사항
+                    </Pre>
+                </li>
+                <li><div>Q&A / 자주하는 질문</div>
+               <pre>
+    
+    <a href="#"><1:1문의하기></a>
+    1.교환 및 환불은 어떻게 하나요?
+    2.전자책 지필은 어떻게 하나요?
+    3.중고책은 어떻게 팔수 있나요?
+               </pre>
+    
+                </li>
+                <li><div>배송</div>
+                    <pre>
+    
+    <a href="#"> 천재지변으로 인한 배송지연 안내</a>
+    <a href="#">20.12.15천재지변으로 인한 배송지연 안내</a>
+    <a href="#">19.08.12 날씨로 인한 배송지연 안내</a>
+                    </pre>
+                </li>
+            </ul>
+        </div>
+        <div id = "f2">
+            <ul>
+                <li><a href="#">오프라인매장   |</li>
+                <li><a href="#">이용약관   |</a></li>
+                <li><a href="#">개인정보방침   |</a></li>
+                <li><a href="#">채용정보   |</a></li>
+                <li><a href="#">협력사   |</a></li>
+                <li><a href="#">광고정보   |</a></li>
+                <li><a href="#">출판사정보   |</a></li>
+                <li><a href="#">모바일 / 웹 서비스    |</a></li>
+                <li><a href="#">대량 주문 안내</a></li>
+            </ul>
+            <hr>
+            <pre id = "last">
+            대표이사 : 최영욱           서울특별시 강북구 미아동 1      사업자등록번호 : 000-00-00000
+            
+            대표전화번호 : 1544-****        FAX : ****-***-****        email : duddnr5406@gmail.com
+            
+            ⓒC-Book online
+            </pre>
+        </div>
+    </footer>
+</body>
+</html>

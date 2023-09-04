@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+         *  {margin: 0; padding: 0; text-decoration: none;}
+        li { list-style-type: none; transform: fixed;}
+        header {width: 1500px; height: 100px; margin: 0 auto; display: flex;}
+        #logo {width: 200px; height: 100px; display: flex; justify-content: center; margin-left: 200px;
+        align-items: center; font-size: x-large; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+        #logo a {text-decoration: none; font-size: xx-large; color: brown; }
+        #logoimg {width: 70px; height: 70px; margin-left: 5px; }
+        #search {width: 500px; height: 50px; margin: 0 auto; display: flex; border: 2px solid pink; 
+        margin-top: 25px; border-radius: 25px; }
+        #search1 {width: 50px; height: 50px; display: flex; justify-content: center;
+        align-items: center; font-size: x-large; color: brown;}
+        #search2 {width: 400px; height: 50px; border-top: 0; border-right: 0; border-bottom: 0; 
+        border-left: 70%; text-align: center; border-color: pink; color: brown; opacity: 0.2;}
+        #topmenu{right: 0; padding-right: 20px;}
+        #topmenu ul{margin-top: 50px;}
+        #topmenu ul li{ display: inline-block; margin-left: 25px;}
+        #topmenu ul li a {color: brown; font-size: small; font-weight: 800;}
+
+        #login {width: 500px; height: 300px; margin: 0 auto; border-radius: 100px;
+        margin-top: 100px; background-color: rgb(235, 202, 202);}
+        #login1 {width: 300px; height: 50px; display: flex; margin:0 auto; }
+        #login1 div {margin-left: 20px;}
+        #login2 {width: 100px; height: 50px; color: brown; font-weight: 600;
+        margin-top: 30px;}
+        #login2 input {width: 180px; height: 23px; text-align: center;}
+        #login3 {width: 100px; height: 50px;margin: 0 auto; margin-top: 10px;}
+        #login3 button {width: 100px; height: 50px; border-radius: 25px; 
+        background-color: brown; color: white; margin-top: 5px}
+        #login4 {width: 200px; height: 50px;  margin: 0 auto; margin-top: 20px;}
+        #login4 img {width: 27%; height:50px;float: left;
+        margin-left: 10px; border-radius: 25px;}
+        #login5 {text-align: center; margin-top: 15px; }
+        #login5 a {font-size: 13px; color: black;}
+
+        footer {width: 1500px; height: 400px; margin: 0 auto; margin-top: 200px;}
+        #f1 {width: 100%; height: 50%; }
+        #f1 ul {width: 100%; height: 100%;}
+        #f1 ul li {float: left; border: 1px solid black; width: 31%; height: 100%;
+        font-size: large; color: brown; margin-left: 30px;}
+        #f2 {width: 100%; height: 50%; margin-top: 20px; text-align: center;}
+        #f2 ul {width: 100%; height: 50px;}
+        #f2 ul li {float: left; margin-left: 40px;}
+        #f2 ul li a{ font-size: 20px; font-weight: 600; color: black; margin: 0 auto;}
+        #last {margin-top: 15px;}
+       
+
+    </style>
+</head>
+<body>
+    
+    <header>
+   
+        <div id="logo">
+            <a href="index.html"><img id = "logoimg" src="./images (2).jpg"></a>
+            <a href="index.html">C-Book</a>
+        </div>
+
+        <div id="search">
+            <a href="#"><div id = "search1">C</div></a>
+            <input id = "search2" type="text" placeholder="사람은 책을 만들고 책은 사람을 만든다.">
+        </div>
+
+        <div id="topmenu">
+            <ul>
+                <li><a href="./newjoin.html">회원가입</a></li>
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="#">C-Book소개</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <hr color="pink" >
+
+    <div id = "login">
+      <div id = "login1">
+        <div id = "login2">ID</div>
+        <div id = "login2"><input type="text" placeholder="아이디를 입력하세요."></div>
+      </div>
+
+      <div id = "login1">
+        <div id = "login2">passward</div>
+        <div id = "login2"><input type="text" placeholder="비밀번호를 입력하세요."></div>
+      </div>
+      <div id = "login5"><a href="#">아이디 찾기 | 비밀번호 찾기</a></div>
+      
+       <div id = "login3"><button>로그인</button></div>
+        
+       <div id = "login4">
+        <div><a href="#"><img src="./login1.jpg"></a></div>
+        <div><a href="#"><img src="./login2.jpg"></a></div>
+        <div><a href="#"><img src="./login3.jpg"></a></div>
+       </div>
+    </div>
+    <br><br>
+
+    <hr color="pink">
+
+    <footer>
+        <div id = "f1">
+            <ul>
+                <li>※공지사항※</li>
+                <li>Q&A / 자주하는 질문</li>
+                <li>배송</li>
+            </ul>
+        </div>
+        <div id = "f2">
+            <ul>
+                <li><a href="#">오프라인매장   |</li>
+                <li><a href="#">이용약관   |</a></li>
+                <li><a href="#">개인정보방침   |</a></li>
+                <li><a href="#">채용정보   |</a></li>
+                <li><a href="#">협력사   |</a></li>
+                <li><a href="#">광고정보   |</a></li>
+                <li><a href="#">출판사정보   |</a></li>
+                <li><a href="#">모바일 / 웹 서비스    |</a></li>
+                <li><a href="#">대량 주문 안내</a></li>
+            </ul>
+            <hr>
+            <pre id = "last">
+            대표이사 : 최영욱           서울특별시 강북구 미아동 1      사업자등록번호 : 000-00-00000
+            
+            대표전화번호 : 1544-****        FAX : ****-***-****        email : duddnr5406@gmail.com
+            
+            ⓒC-Book online
+            </pre>
+        </div>
+    </footer>
+    
+</body>
+</html>

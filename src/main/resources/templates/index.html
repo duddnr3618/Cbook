@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>인덱스 페이지</title>
+
+<body>
+    <div th:fragment="header">
+	<link rel="stylesheet" type="text/css" th:href="@{/header.css}">
+		
+        <div id = "top_menu">
+            <img src="">
+            <a href="#">Cbook</a>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">로그아웃</a></li>
+                <li><a href="#">회원가입</a></li>
+                <li><a href="#">C-book 소개</a></li>
+                <li><a href="#">고객센터</a></li>
+            </ul>
+        </div>
+ 
+        <div>
+            <ul>
+                <li><a href="#">전자책</a>
+                    <ul>
+                        <li><a href="#">베스트 전자책</a></li>
+                        <li><a href="/board/list">최신 전자책</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">전자책 지필</a>
+                    <ul>
+                        <li><a href="/board/write">전자책 지필</a></li>
+                        <li><a href="#">전자책 지필하는 방법</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">작가 이벤트</a></li>
+                <li><a href="#">C-book 이벤트</a></li>
+                <li><a href="#">마이 페이지</a>
+                    <ul>
+                        <li><a href="#">내 서재</a></li>
+                        <li><a href="#">서재 공유</a></li>
+                        <li><a href="#">독후감 작성</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</body>
+</html>

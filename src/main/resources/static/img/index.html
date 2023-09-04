@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *  {margin: 0; padding: 0; text-decoration: none;}
+        li { list-style-type: none; transform: fixed;}
+        header {width: 1500px; height: 100px; margin: 0 auto; display: flex;}
+        #logo {width: 200px; height: 100px; display: flex; justify-content: center; margin-left: 200px;
+        align-items: center; font-size: x-large; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+        #logo a {text-decoration: none; font-size: xx-large; color: brown; }
+        #logoimg {width: 70px; height: 70px; margin-left: 5px; }
+        #search {width: 500px; height: 50px; margin: 0 auto; display: flex; border: 2px solid pink; 
+        margin-top: 25px; border-radius: 25px; }
+        #search1 {width: 50px; height: 50px; display: flex; justify-content: center;
+        align-items: center; font-size: x-large; color: brown;}
+        #search2 {width: 400px; height: 50px; border-top: 0; border-right: 0; border-bottom: 0; 
+        border-left: 70%; text-align: center; border-color: pink; color: brown; opacity: 0.2;}
+        #topmenu{right: 0; padding-right: 20px;}
+        #topmenu ul{margin-top: 50px;}
+        #topmenu ul li{ display: inline-block; margin-left: 25px;}
+        #topmenu ul li a {color: brown; font-size: small; font-weight: 800;}
+
+        #onlogin {border: 0; outline: 0; color: brown; font-size: small; font-weight: 800;
+        background-color: white;}
+        .popup-overlay {position: fixed; top: 0; left: 0; width: 100%;
+        height: 100%; background-color: rgba(0,0,0,0.5); display: flex;
+        justify-content: center; align-items: center; visibility: hidden;
+        opacity: 0; transition: visibility 0s, opacity 0.3s ease;}
+        .popup-content {width: 400px; padding: 20px; background-color: #fff;
+        border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);}
+        .popup-content h2 {text-align: center; margin-top: 0;}
+        .popup-content form {display: flex; flex-direction: column;}
+        .popup-content input [type = "text"],.popup-content input[type = "password"]
+        {margin-bottom: 10px; padding: 8px; border-radius: 3px; 
+        background-color: #3f51b5; color: #fff; cursor: pointer;}
+        .popup-content input[type = "submit"]
+        {padding: 8px 12px; border: none; border-radius: 3px; 
+        background-color: pink; color: #fff; cursor: pointer;}
+        .popup-content input[type = "submit"]:hover {background-color:rgb(253, 141, 160);}
+        .popup-content .close-btn {
+        position: absolute; top: 10px; right: 10px; cursor: pointer;}
+
+        main {width: 1500px; height: 1400px;  margin: 0 auto;}
+        .menu { width: 1500px; overflow: hidden; margin: 50px auto; }
+        .menu>li { width: 16.6%; float: left; text-align: center; line-height: 40px; 
+        background-color: pink; border-radius: 25px;}
+        .menu a {color: white;}
+        .submenu>li {line-height: 50px; background-color: rgb(235, 109, 109) }
+        .submenu {height: 0;  overflow: hidden; }
+        .menu >li:hover {background-color: brown; transition: 0.5s;}
+        .menu >li:hover .submenu {height: 250px; transition: 1s; visibility: visible;}
+
+        #mainboard {font-size: 30px; text-align: center; color: brown; margin-top: 20px; 
+        margin-bottom: 10px;}
+        #mainimg1 {width: 1500px; height: 500px; margin-top: 30px; margin: 0 auto; }
+        #imgs  { margin-top: 40px; width: 1200px; height: 350px; margin: 0 auto;}
+        #imgs li  { border: 1px dotted black; float: left; width: 22%; height: 350px; margin-left: 20px;}
+        #imgs li a {width: 100%; height: 100%;}
+        #imgs li a img{ width: 100%; height: 100%;}
+        #info {width: 1200px; height: 140px; margin: 0 auto; margin-top: 5px;}
+        #info li {float: left; width: 22%; height: 140px; margin-left: 20px;
+        text-align: center;}
+        #recommend {width: 1200px; height: 30px; margin: 0 auto;}
+        #recommend ul { width: 100%; height: 100%; margin: 0 auto;}
+        #recommend ul li { width: 22%; height: 30px; float: left; text-align: center; 
+        margin-left: 20px; font-size: large; color: burlywood;}
+        .image-container:hover {transform:skew(-10deg,10deg); }
+        .h1:hover{transform:skew(-10deg,10deg); }
+
+        .image-container {position: relative; display: inline-block;}
+        .image-details { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+        background-color: rgba(255, 255, 255, 0.8); padding: 20px; text-align: center;
+        display: none; font-size: 30px; color: black;}
+        .close-button {position: absolute;top: 10px; right: 10px; font-size: 20px;
+        cursor: pointer;}
+        .image-details img { max-width: 100%; max-height: 100%;}
+
+
+        footer {width: 1500px; height: 400px; margin: 0 auto;}
+        #f1 {width: 100%; height: 50%; }
+        #f1 ul {width: 100%; height: 100%;}
+        #f1 ul li {float: left; width: 31%; height: 100%;font-size: 30px; 
+        color:black;font-weight: 900; margin-left: 30px; text-align: center;
+        border-right: 1px solid brown; border-left: 1px solid brown;}
+        #f1 ul li div {width: 80%; margin: 0 auto;
+        border-radius: 10px; background-color: rgb(219, 193, 193); color: white;}
+        #f1 ul li pre {font-size: 21px; font-weight: 100; color: black; text-decoration: none; }
+        #f2 {width: 100%; height: 50%; margin-top: 20px; text-align: center; }
+        #f2 ul {width: 100%; height: 50px; margin: 0 auto; }
+        #f2 ul li {float: left; text-align: center; margin-left: 70px;}
+        #f2 ul li a{ font-size: 15px; font-weight: 600; color: black; margin: 0 auto;}
+        #last {margin-top: 40px;}
+
+
+    </style>
+</head>
+<body>
+    
+    <header>
+   
+        <div id="logo">
+            <a href="index.html"><img id = "logoimg" src="./images (2).jpg"></a>
+            <a href="index.html">C-Book</a>
+        </div>
+
+        <div id="search">
+            <a href="#"><div id = "search1">C</div></a>
+            <input id = "search2" type="text" placeholder="사람은 책을 만들고 책은 사람을 만든다.">
+        </div>
+
+        <div id="topmenu">
+            <ul>
+                <li><a href="./newjoin.html">회원가입</a></li>
+                <li><button id = "onlogin" onclick="openPopup()">로그인</button>
+                    <div id ="popup" class = "popup-overlay">
+                        <div class = "popup-content">
+                            <span class = "close-btn" onclick="closePopup()">&times;</span>
+                            <h2>로그인</h2>
+                            <form>
+                                <input type="text" placeholder="아이디" style="height: 40px;">
+                                <input type="text" placeholder="비밀번호" style="height: 40px;">
+                                <input type="submit" value="로그인">
+                            </form>
+                        </div>
+                    </div>
+                
+                </li>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="#">C-Book소개</a></li>
+            </ul>
+        </div>
+    
+    </header>
+
+<main>
+
+    <ul class = "menu">
+        <li><a href="#">Book</a>
+            <ul class ="submenu">
+                <li><a href="#">All</a></li>
+                <li><a href="#">국내도서</a></li>
+                <li><a href="#">해외도서</a></li>
+                <li><a href="#">신간도서</a></li>
+                <li><a href="#">추천도서</a></li>
+            </ul>
+        
+        </li> 
+
+        <li><a href="#">Best Seller</a>
+            <ul class ="submenu">
+                <li><a href="#">현재 베스트 셀러</a></li>
+                <li><a href="#">주간 베스트 셀러</a></li>
+                <li><a href="#">월간 베스트 셀러</a></li>
+                <li><a href="#">연간 베스트 셀러</a></li>
+                <li><a href="#">추천 베스트 셀러</a></li>
+            </ul>
+        
+        </li> 
+
+        <li><a href="#">My Library</a>
+            <ul class ="submenu">
+                <li><a href="#">내 서재</a></li>
+                <li><a href="#">서재관리</a></li>
+                <li><a href="#">서재추가</a></li>
+                <li><a href="#">서재공유</a></li>
+                <li><a href="#">지필하기</a></li>
+            </ul>
+        
+        </li>  
+
+        <li><a href="#">e-Book</a>
+            <ul class ="submenu">
+                <li><a href="#">All (e-book)</a></li>
+                <li><a href="#">신간 (e-book)</a></li>
+                <li><a href="#">추천 (e-book)</a></li>
+                <li><a href="#">인기 (e-book)</a></li>
+                <li><a href="#">전자책 지필하기</a></li>
+            </ul>
+        
+        </li> 
+
+        <li><a href="#">Review</a>
+            <ul class ="submenu">
+                <li><a href="#">한줄평가</a></li>
+                <li><a href="#">독후감 작성</a></li>
+                <li><a href="#">공유하기</a></li>
+                <li><a href="#">이책 어때?</a></li>
+                <li><a href="#">작가에게 쓰기</a></li>
+            </ul>
+        
+        </li>  
+
+        <li><a href="#">Event</a>
+            <ul class = "submenu">
+                <li><a href="#">C-Event</a></li>
+                <li><a href="#">인기 이벤트</a></li>
+                <li><a href="#">작가님 이벤트</a></li>
+                <li><a href="#">굿즈</a></li>
+                <li><a href="#">플레이스 마켓</a></li>
+            </ul>
+        </li>
+    </ul>
+    <hr color="pink">
+
+    <div>
+        <div id = "mainboard">실시간 베스트셀러</div>
+        <div id = "mainimg1">
+            <ul id = imgs>
+                <li><a href="#"><img  class = "image-container" src="./img1.jpg" 
+                    alt="Image" onclick="showImageDetails(this)">
+                    <div class="image-details">
+                        <span class="close-button" onclick="hideImageDetails()">&times;</span>
+                        <img src="./img1.jpg" alt="Image">
+                        <p>문과 남자의 과학공부</p>
+                        <p>작가 : 유시민</p>
+                        <p>가격 : 15,000원</p>
+                        <P>리뷰 보기</P>
+                      </div></a></li>
+                <li><a href="#"><img  class = "h1" src="./img2.jpg"></a></li>
+                <li><a href="#"><img  class = "h1" src="./img3.jpg"></a></li>
+                <li><a href="#"><img  class = "h1" src="./img4.jpg"></a></li>
+            </ul>
+            <ul id = 'info'>
+                <li><a href="#"><p style="font-weight:bolder; color: black; font-size: 16px;">1.문과 남자의 과학공부
+                    <p style="color: black;">작가 : 유시민 </p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p  style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+                <li><a href="#"><p style="font-weight:bolder; color: black; font-size: 16px;">2.세이노의 가르침
+                    <p style="color: black;">작가 : 세이노(sayNo) </p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+                <li><a href="#"><p style="font-weight:bolder; color: black; font-size: 16px;">3.이렇게 살면 큰일 나는 줄 알았지
+                    <p style="color: black;">작가 : 리틀타네 </p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+                <li><a href="#"><p style="font-weight:bolder; color: black; font-size: 16px;">4.상처받지 않는 관계의 비밀
+                    <p style="color: black;">작가 : 최리나</p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+            </ul>
+        </div>
+    </div>
+
+      
+
+
+    <div>
+        <div id = "mainboard">사용자 추천도서</div>
+        <div id = "recommend">
+            <ul>
+                <li>1.경제에 관심이 많아요!</li>
+                <li>2.꿈이 과학자인가요?</li>
+                <li>3.나도 자기계발! </li>
+                <li>4.C-book이 추천해요~</li>
+            </ul>
+        </div>
+        <div id = "mainimg1">
+            <ul id = imgs>
+                <li><a href="#"><img class = "h1" src="./reimg1.jpg"></a></li>
+                <li><a href="#"><img class = "h1" src="./reimg2.jpg"></a></li>
+                <li><a href="#"><img class = "h1" src="./reimg3.jpg"></a></li>
+                <li><a href="#"><img class = "h1" src="./reimg4.jpg"></a></li>
+            </ul>
+            <ul id = 'info'>
+                <li><a href="#">
+                    <p style="font-weight:bolder; color: black; font-size: 16px;">1.역행자
+                    <p style="color: black;">작가 : 자청 </p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p  style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+                <li><a href="#">
+                    <p style="font-weight:bolder; color: black; font-size: 16px;">2.하늘과 바람과 별과
+                    <p style="color: black;">작가 : 김상욱 </p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+                <li><a href="#">
+                    <p style="font-weight:bolder; color: black; font-size: 16px;">3.시장학계론
+                    <p style="color: black;">작가 : 김승호 </p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+                <li><a href="#">
+                    <p style="font-weight:bolder; color: black; font-size: 16px;">4.꿀벌의 예언
+                    <p style="color: black;">작가 : 베르나르 베르베르</p>
+                    <p style="color: brown; font-weight: bold;">가격 :15,000원 </p>
+                    <p style="color: pink;">평점 : ★★★★☆</p>
+                    <p style="color: black;">소개 : ---</p>
+                </p></a></li>
+            </ul>
+        </div>
+    </div>
+    <hr color="pink">
+</main>
+
+<footer>
+    <div id = "f1">
+        <ul>
+            <li><div>※공지사항※</div>
+                <Pre>
+
+- 23.06.30 C-Book 공지사항
+- 23.06.29 C-Book 공지사항
+- 23.06.28 C-Book 공지사항
+- 23.06.27 C-Book 공지사항
+                </Pre>
+            </li>
+            <li><div>Q&A / 자주하는 질문</div>
+           <pre>
+
+<a href="#"><1:1문의하기></a>
+1.교환 및 환불은 어떻게 하나요?
+2.전자책 지필은 어떻게 하나요?
+3.중고책은 어떻게 팔수 있나요?
+           </pre>
+
+            </li>
+            <li><div>배송</div>
+                <pre>
+
+<a href="#"> 천재지변으로 인한 배송지연 안내</a>
+<a href="#">20.12.15천재지변으로 인한 배송지연 안내</a>
+<a href="#">19.08.12 날씨로 인한 배송지연 안내</a>
+                </pre>
+            </li>
+        </ul>
+    </div>
+    <div id = "f2">
+        <ul>
+            <li><a href="#">오프라인매장   </li>
+            <li><a href="#">이용약관   </a></li>
+            <li><a href="#">개인정보방침   </a></li>
+            <li><a href="#">채용정보   </a></li>
+            <li><a href="#">협력사   </a></li>
+            <li><a href="#">광고정보   </a></li>
+            <li><a href="#">출판사정보   </a></li>
+            <li><a href="#">모바일 / 웹 서비스    </a></li>
+            <li><a href="#">대량 주문 안내</a></li>
+        </ul>
+        <hr>
+        <pre id = "last">
+        대표이사 : 최영욱           서울특별시 강북구 미아동 1      사업자등록번호 : 000-00-00000
+        
+        대표전화번호 : 1544-****        FAX : ****-***-****        email : duddnr5406@gmail.com
+        
+        ⓒC-Book online
+        </pre>
+    </div>
+</footer>
+
+</body>
+</html>
+
+<script>
+
+    function showImageDetails(img) {
+  var imageDetails = img.nextElementSibling;
+  imageDetails.style.display = "block";
+  document.body.style.opacity = "0.6"; // 낮은 투명도로 설정
+
+}
+
+function hideImageDetails() {
+  var imageDetails = document.querySelector(".image-details");
+  imageDetails.style.display = "none";
+  document.body.style.opacity = "1"; // 원래 투명도로 복원
+}
+
+function openPopup () {
+        var popup = document.getElementById("popup");
+        popup.style.visibility="visible";
+        popup.style.opacity="1";
+    }
+
+    function closePopup () {
+        var popup = document.getElementById("popup");
+        popup.style.visibility="hidden";
+        popup.style.opacity = "0";
+    }
+  
+</script>
