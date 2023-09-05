@@ -22,6 +22,16 @@ public class BoardDto {
 	private LocalDateTime boardCreatedTime;
 	private LocalDateTime boardUpdateTime;
 	
+	// 페이징 처리를 위한 entity를 dto객체로 변환
+	public BoardDto(Long id, String writer, String title, int hits, LocalDateTime boardCreatedTime) {
+		super();
+		this.id = id;
+		this.writer = writer;
+		this.title = title;
+		this.hits = hits;
+		this.boardCreatedTime = boardCreatedTime;
+	}
+	
 	
 	public static BoardDto  toBoardDto (BoardEntity boardEntity) {
 		BoardDto boardDto = new BoardDto ();
@@ -37,5 +47,8 @@ public class BoardDto {
 		return boardDto;
 	
 	}
+
+
+
 
 }

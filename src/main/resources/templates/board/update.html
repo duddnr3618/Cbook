@@ -2,9 +2,7 @@
 <html lang="en" 
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-	
-	
+      
 <meta charset="UTF-8">
 
 	<!-- 사용할 레이아웃-->
@@ -80,41 +78,42 @@
     }
 </script>
 
-</head>
 <body>
 	
 
-
-<!--작성한 게시글을 Dto로 보낸다 -->
 	<div class="layout">
-    <form  action="/board/update" method="post" name="updateForm" >
-		<input type="hidden" name="id" value="${boardUpdate.id}"> <br>
+		
+    <form action="/board/update/{id}"  method="post" name="updateForm" >
+		<input type="hidden" name="id" th:value="${boardUpdate.id}"> <br>
         제목: <input type="text" name="title" th:value="${boardUpdate.title}"> <br>
         작성자: <input type="text" name="writer" th:value="${boardUpdate.writer}"> <br>
         비밀번호 : <input type="text" name = pass id="boardPass"> <br>
         내용: <textarea name="content" th:text="${boardUpdate.content}"></textarea> <br>
-     	<input type="hidden" name="hits" value="${boardUpdate.hits}"><br>
+     	<input type="hidden" name="hits" th:value="${boardUpdate.hits}"><br>
         <button type="button" value="수정" onclick="boardUpdate()">수정</button>
+      	<button type="button" value="취소" onclick="boardBack()">취소</button>
       	
     </form>
 	</div>
 	
-	</form>
 <script th:inline="javascript">
 	
   	const boardUpdate = () => {
   	const pass = [[${boardUpdate.boardPass}]];			//DB에서 가져온 기존 비밀번호
-    const inputPass = document.getElementById("boardPass").value;   // 사용자가 입력한 비밀번호
+    const inputPass = document.getElementById("boardPass").value.trim();   // 사용자가 입력한 비밀번호(공백제거)
+    
     if (pass == inputPass) {
       document.updateForm.submit();
-      alert("게시글이 수정되었습니다.")
+     
     } else {
       alert("비밀번호가 일치하지 않습니다.");
     }
+    
+    const boardBack = () => {
+			location.href="/board/list";
+	}
   }
 </script>
-		
-	</script>
 
 </body>
 </html>

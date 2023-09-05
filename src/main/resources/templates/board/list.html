@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>리스트 페이지</title>
-<style>
+    <meta charset="UTF-8">
+    <title>리스트 페이지</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -32,36 +32,99 @@
 
         a {
             text-decoration: none;
-            color: #007bff;
+            color: rgb(128, 128, 128);
             font-weight: bold;
         }
 
         a:hover {
             text-decoration: underline;
         }
+
+        /* 버튼 스타일 */
+        button {
+            background-color: rgb(128, 128, 128);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 페이지 번호 스타일 */
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        
+         /* 현재 페이지 스타일 */
+        .current-page {
+            background-color: rgb(192, 192, 192);
+            border-radius: 4px;
+            padding: 8px;
+            font-weight: 800;
+            color: rgb(0, 0, 0);
+        }
+
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
+	<button onclick="homeReq()">home</button>
+	
+    <table>
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <th>작가</th>
+            <th>조회수</th>
+            <th>업로드 시간</th>
+        </tr>
+        <tr th:each="board: ${boardList}">
+            <td th:text="${board.id}"></td>
+            <td><a th:href="@{|/board/${board.id}|(page=${boardList.number + 1})}" th:text="${board.title}"></a></td>
+            <td th:text="${board.writer}"></td>
+            <td th:text="*{#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td th:text="${board.hits}"></td>
+        </tr>
+    </table>
 
-	<table>
-		<tr>
-			<th>글 번호</th>
-			<th>제목</th>
-			<th>작가</th>
-			<th>조회수</th>
-			<th>업로드 시간</th>
-		</tr>
-		
-	<tr th:each="board: ${boardList}">
-    <td th:text="${board.id}"></td>
-    <td><a th:href="@{|/board/${board.id}|}" th:text="${board.title}"></a></td>
-    <td th:text="${board.writer}"></td>
-    <td th:text="${board.hits}"></td>
-    <td th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-	</tr>
+    <button onclick="writeReq()">글 작성</button>
 
-		
-	</table>
+    <!-- 페이지 번호 -->
+    <div class="pagination">
+        <a th:href="@{/board/list(page=1)}">처음</a>
+        <a th:href="${boardList.first} ? '#' : @{/board/list(page=${boardList.number})}">이전</a>
+        <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+            <span th:if="${page == boardList.number + 1}" class="current-page" th:text="${page}"></span>
+            <span th:unless="${page == boardList.number + 1}">
+                <a th:href="@{/board/list(page=${page})}" th:text="${page}"></a>
+            </span>
+        </span>
+        <a th:href="${boardList.last} ? '#' : @{/board/list(page=${boardList.number + 2})}">다음</a>
+        <a th:href="@{/board/list(page=${boardList.totalPages})}">마지막</a>
+    </div>
 
+    <script>
+        const writeReq = () => {
+            location.href = "/board/write";
+        }
+        
+        const homeReq = () => {
+			location.href="/";
+		}
+    </script>
 </body>
 </html>
