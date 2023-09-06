@@ -1,18 +1,24 @@
 package com.mysite.book.board.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mysite.book.board.dto.BoardDto;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "Cboard")
+@Table(name = "board")
 public class BoardEntity extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +38,16 @@ public class BoardEntity extends BaseEntity {
 	
 	@Column
 	private int hits;
-
-	// 게시글 작성 처리 (dto -> entity 로 변환)
+	
+	@Column
+	private int fileAttached;			// 1 or 0
+	
+	@OneToMany(mappedBy = "boardEntity" , cascade = CascadeType.REMOVE , 
+			orphanRemoval = true , fetch = FetchType.LAZY)
+	private List<BoardFileEntity> boardFileEntityList = new ArrayList<>();
+	
+	
+	// 게시글 작성 처리 (dto -> entity 로 변환) -> 파일이 없는경우
 	public static BoardEntity toSaveEntity(BoardDto boardDto) {
 		
 		BoardEntity boardEntity = new BoardEntity();
@@ -42,6 +56,7 @@ public class BoardEntity extends BaseEntity {
 		boardEntity.setTitle(boardDto.getTitle());
 		boardEntity.setContent(boardDto.getContent());
 		boardEntity.setHits(0);
+		boardEntity.setFileAttached(0); 		// 파일 없음
 		
 		return boardEntity;
 		
@@ -60,7 +75,22 @@ public class BoardEntity extends BaseEntity {
 		return boardEntity;
 		
 	}
+
+	//게시글 작성 처리 (dto -> entity 로 변환) -> 파일이 있는경우
+	public static BoardEntity toSaveFileEntity(BoardDto boardDto) {
+		// TODO Auto-generated method stub
+		BoardEntity boardEntity = new BoardEntity();
+		boardEntity.setWriter(boardDto.getWriter());
+		boardEntity.setBoardPass(boardDto.getBoardPass());
+		boardEntity.setTitle(boardDto.getTitle());
+		boardEntity.setContent(boardDto.getContent());
+		boardEntity.setHits(0);
+		boardEntity.setFileAttached(1); 		// 파일 있음
+		
+		return boardEntity;
 	
+	}
 	
+
 	
 }

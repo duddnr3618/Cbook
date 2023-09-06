@@ -1,5 +1,6 @@
 package com.mysite.book.board.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class BoardController {
 	
 	// 게시글 작성 처리 
 	@PostMapping("/board/save")
-	public String boardWritepro(@ModelAttribute BoardDto boardDto) {
+	public String save(@ModelAttribute BoardDto boardDto) throws IOException {
+		System.out.println("boardDto = " + boardDto);
 		boardService.save(boardDto);
 		return "index";
 	}
@@ -76,6 +78,12 @@ public class BoardController {
         boardService.updateHits(id);
         // boardDto 객체에 boardService의 BoardDetail을 가져온다.
         BoardDto boardDto = boardService.findById(id);
+        
+        System.out.println(">>>>>>>>>>" +boardDto.getStoredFileName());
+        
+        
+        
+        
         // 가져온 객체를 board라는 파라미터에 담는다.
         model.addAttribute("board" , boardDto);
         return "board/detail"; 

@@ -87,13 +87,16 @@
 
 <!--작성한 게시글을 Dto로 보낸다 -->
 	<div class="layout">
-    <form  action="/board/save" method="post" >
+    <form  action="/board/save" method="post" enctype="multipart/form-data">
         제목: <input type="text" name="title"> <br>
         작성자: <input type="text" name="writer"> <br>
-        비밀번호 : <input type="text" name = boardPass> <br>
+        비밀번호 : <input type="text" name = "boardPass"> <br>
+        
         내용: <textarea name="content"></textarea> <br>
-     
+        사진 / 파일 : <input type="file" name="boardFile" multiple > <br>
+     	
         <button type="submit">작성</button>
+        
        <!-- <p id="error" class="error-message"></p> -->
     </form>
 	</div>

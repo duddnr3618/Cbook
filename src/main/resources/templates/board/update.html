@@ -87,7 +87,7 @@
 		<input type="hidden" name="id" th:value="${boardUpdate.id}"> <br>
         제목: <input type="text" name="title" th:value="${boardUpdate.title}"> <br>
         작성자: <input type="text" name="writer" th:value="${boardUpdate.writer}"> <br>
-        비밀번호 : <input type="text" name = pass id="boardPass"> <br>
+        비밀번호 : <input type="text" name ="boardPass" id="boardPass"> <br>
         내용: <textarea name="content" th:text="${boardUpdate.content}"></textarea> <br>
      	<input type="hidden" name="hits" th:value="${boardUpdate.hits}"><br>
         <button type="button" value="수정" onclick="boardUpdate()">수정</button>

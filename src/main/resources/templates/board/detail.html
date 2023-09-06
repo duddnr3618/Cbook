@@ -27,9 +27,15 @@
 		<td th:text="${board.boardCreatedTime}"></td>
 	</tr>
 	
-		<tr>
+	<tr>
 		<th>조회수</th>
 		<td th:text="${board.hits}"></td>
+	</tr>
+	
+	<!-- ***파일이 존재할시만 사진이 보여지도록 처리 -->
+  	<tr th:if="${board.fileAttached == 1}">
+    <th>사진</th>
+    <td><img th:src="@{|/upload/${board.storedFileName}|}" ></td>
 	</tr>
 	
 		<tr>
