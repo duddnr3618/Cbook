@@ -25,6 +25,7 @@ public class BoardFileEntity extends BaseEntity{
 	@Column
 	private String storedFileName;
 	
+	// board와 연관관계 설정 board  : file = 1 : N
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "board_id")
 	private BoardEntity boardEntity;
@@ -32,10 +33,10 @@ public class BoardFileEntity extends BaseEntity{
 	
 	// boardFileEntity로 변환
 	public static BoardFileEntity toBoardFileEntity (BoardEntity boardEntity , 
-			String originalFileName , String stredFileName) {
+			String originalFileName , String storedFileName) {
 		BoardFileEntity boardFileEntity = new BoardFileEntity ();
 		boardFileEntity.setOriginalFileName(originalFileName);
-		boardFileEntity.setStoredFileName(stredFileName);
+		boardFileEntity.setStoredFileName(storedFileName);
 		boardFileEntity.setBoardEntity(boardEntity);
 		return boardFileEntity;
 		

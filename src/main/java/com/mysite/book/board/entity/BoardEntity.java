@@ -42,9 +42,17 @@ public class BoardEntity extends BaseEntity {
 	@Column
 	private int fileAttached;			// 1 or 0
 	
+	// 부모인 boardEntity가 삭제되면 파일도 삭제된다. ( 게시글 : 파일 = 1 : N )
 	@OneToMany(mappedBy = "boardEntity" , cascade = CascadeType.REMOVE , 
 			orphanRemoval = true , fetch = FetchType.LAZY)
 	private List<BoardFileEntity> boardFileEntityList = new ArrayList<>();
+	
+	// 부모인 boardEntity가 삭제되면 댓글도 삭제된다.
+	@OneToMany(mappedBy = "boardEntity" , cascade = CascadeType.REMOVE , 
+			orphanRemoval = true , fetch = FetchType.LAZY)
+	private List<CommentEntity> commentEntityList = new ArrayList<>();
+	
+	
 	
 	
 	// 게시글 작성 처리 (dto -> entity 로 변환) -> 파일이 없는경우

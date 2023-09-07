@@ -39,10 +39,10 @@ public class BoardController {
 	
 	// 게시글 작성 처리 
 	@PostMapping("/board/save")
-	public String save(@ModelAttribute BoardDto boardDto) throws IOException {
+	public String save(@ModelAttribute BoardDto boardDto) throws Exception {
 		System.out.println("boardDto = " + boardDto);
 		boardService.save(boardDto);
-		return "index";
+		return "/";
 	}
 	
 //	// 게시글 리스트
@@ -58,17 +58,22 @@ public class BoardController {
 	// 페이지 요청 처리 : /board/paging?=1
 	@GetMapping("/board/list")
 	public String paging (@PageableDefault(page=1) Pageable pageable , Model model) {
-		pageable.getPageNumber();
-		Page<BoardDto> boardList = boardService.paging(pageable);
 		
+		System.out.println(">>>>>: 1");
+		pageable.getPageNumber();
+		System.out.println(">>>>>: 2");
+	    Page<BoardDto> boardList = boardService.paging(pageable);
+		System.out.println(">>>>>: 3");
 		// 보여지는 페이지 갯수 처리 (3개)
 		int blockLimit = 3;
 		int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; // 1 4 7 10 ~~
-	    int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages();
-		
+        int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages();
+	    System.out.println(">>>>>: 4");
+	    
 	     model.addAttribute("boardList", boardList);
 	     model.addAttribute("startPage", startPage);
 	     model.addAttribute("endPage", endPage);
+	     System.out.println(">>>>>: 5");
 	     return "board/list";	
 	}
 
@@ -100,8 +105,17 @@ public class BoardController {
 	
 	
 	// 게시글 수정 처리
-	@PostMapping("/board/update")
+	@PostMapping("/board/update/{id}")
 	public String boardUpdate (@ModelAttribute BoardDto boardDto , Model model) {
+		
+		System.out.println("컨트롤러 호출 잘됨 : ");
+		
+		System.out.println(boardDto.getId());
+		System.out.println(boardDto.getContent());
+		System.out.println(boardDto.getTitle());
+		
+		
+		
 		BoardDto board = boardService.update(boardDto);
 		model.addAttribute("board" , board) ;
 		return "redirect:/board/list";
