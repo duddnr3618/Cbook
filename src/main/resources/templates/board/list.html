@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+mlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>리스트 페이지</title>
@@ -82,7 +83,6 @@
     </style>
 </head>
 <body>
-	<button onclick="homeReq()">home</button>
 	
     <table>
         <tr>
@@ -121,10 +121,8 @@
         const writeReq = () => {
             location.href = "/board/write";
         }
-        
-        const homeReq = () => {
-			location.href="/";
-		}
+
+		
     </script>
 </body>
 </html>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mysite.book.board.dto.BoardDto;
+import com.mysite.book.board.entity.BoardEntity;
 import com.mysite.book.board.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor	//생성자 주입을 통한 자동으로 생성자가 생성
 public class BoardController {
+	@Autowired
 	private final BoardService boardService;
 	
 	@GetMapping("/")
@@ -85,10 +87,7 @@ public class BoardController {
         BoardDto boardDto = boardService.findById(id);
         
         System.out.println(">>>>>>>>>>" +boardDto.getStoredFileName());
-        
-        
-        
-        
+
         // 가져온 객체를 board라는 파라미터에 담는다.
         model.addAttribute("board" , boardDto);
         return "board/detail"; 
@@ -99,27 +98,36 @@ public class BoardController {
 	public String updateForm (@PathVariable Long id , Model model) {
 		BoardDto boardDto = boardService.findById(id);
 		model.addAttribute("boardUpdate" , boardDto);
+		System.out.println("수정폼 완료");
+
 		return "/board/update";
 		
 	}
 	
 	
+//	// 게시글 수정 처리
+//	@PostMapping("/board/update")
+//	public String update (@ModelAttribute BoardDto boardDto , Model model) {
+//		// update 메소드 호출
+//		BoardDto board = boardService.update(boardDto);
+//		System.out.println("수정 처리 완료1" + board);
+//		model.addAttribute("board", board);
+//
+//		System.out.println("수정 처리 완료2");
+//		return "board/detail";
+//	}
+//	
 	// 게시글 수정 처리
 	@PostMapping("/board/update/{id}")
-	public String boardUpdate (@ModelAttribute BoardDto boardDto , Model model) {
+	public String update (@PathVariable("id") Long id , BoardEntity board) {
+		BoardEntity boardTemp = boardService.boardView(id);
+		boardTemp.setWriter(board.getWriter());
+		boardTemp.setTitle(board.getTitle());
+		boardTemp.setContent(board.getContent());
 		
-		System.out.println("컨트롤러 호출 잘됨 : ");
-		
-		System.out.println(boardDto.getId());
-		System.out.println(boardDto.getContent());
-		System.out.println(boardDto.getTitle());
-		
-		
-		
-		BoardDto board = boardService.update(boardDto);
-		model.addAttribute("board" , board) ;
-		return "redirect:/board/list";
+		return "board/list";
 	}
+	
 
 	// 게시글 삭제 처리
 	@GetMapping("/board/delete/{id}")

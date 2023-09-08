@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" 
+ 	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이 페이지</title>
+</head>
+ <body >
+	마이페이지 
+	<div> <p>내정보 </p>
+	이메일 : <span th:text="${session.loginEmail}"></span> <br>
+	<a href="/member/update">내 정보 수정하기</a> <br>
+	<a href="@{|/member/delete/${member.id}|}">회원 탈퇴</a> <br>
+	<a href="/member/logout">로그아웃</a>
+	</div>
+	
+
+</body>
+</html>

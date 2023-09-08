@@ -108,13 +108,18 @@ public class BoardService {
 	        return null;
 	    }
 	  }
+	  
+// 특정 게시글 불러오기
+	  public BoardEntity boardView(Long id) {
+		  
+		  return boardRepository.findById(id).get();
+		  
+	  }
 
 	  
 	  // 게시글 수정 처리 
 	public BoardDto update(BoardDto boardDto) {
 		// dto -> entity 변환
-		
-		
 		BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDto) ;
 		boardRepository.save(boardEntity);
 		
